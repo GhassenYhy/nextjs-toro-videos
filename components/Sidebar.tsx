@@ -14,7 +14,6 @@ const Sidebar = () => {
   const normalLink =
     "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#ad3724] rounded";
   const [showSidebar, setShowSidebar] = useState(true);
-  const userProfile = false;
   return (
     <div>
       <div
@@ -35,31 +34,6 @@ const Sidebar = () => {
               </div>
             </Link>
           </div>
-          {!userProfile && (
-            <div className="px-2 py-4 hidden xl:block">
-              <p className="text-gray-400">
-                Login to like and comment on videos
-              </p>
-              <div className="pr-4">
-                <GoogleLogin
-                  clientId=""
-                  render={(renderProps) => (
-                    <button
-                      className="bg-white text-lg text-[#ad3724] border-[1px] border-[#ad3724] px-6 py-3 rounded-md
-                      outline-none w-full mt-3 hover:text-white hover:bg-[#ad3724] cursor-pointer"
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-                    >
-                      Login
-                    </button>
-                  )}
-                  onSuccess={() => {}}
-                  onFailure={() => {}}
-                  cookiePolicy="single_host_origin"
-                />
-              </div>
-            </div>
-          )}
           <Discover />
           <SuggestedAccounts />
           <Footer />
