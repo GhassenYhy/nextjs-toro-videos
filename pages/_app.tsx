@@ -26,7 +26,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <div className="h-[92vh] overf;pw-hidden xl:hover:overflow-auto">
             <Sidebar />
           </div>
-          <div className="flex flex-col gap-10 overflow-auto h-[88vh] videos flex-1">
+          <div className="flex flex-col gap-10 overflow-auto h-[88vh] videos flex-1 pt-10">
             <Component {...pageProps} />
           </div>
         </div>
