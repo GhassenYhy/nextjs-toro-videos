@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -14,6 +14,16 @@ import authStore from "../store/authStore";
 import useAuthStore from "../store/authStore";
 
 const Navbar = () => {
+  const router = useRouter();
+  const handleSearch = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (searchValue) {
+      router.push(`/search/${searchValue}`);
+    }
+  };
+
+  const [searchValue, setSearchValue] = useState("");
+
   const { userProfile, addUser, removeUser } = useAuthStore();
   return (
     <div className="w-full flex justify-between h-12 items-center border-b-2 border-gray-200 py-2px-4 p-3">
@@ -27,7 +37,27 @@ const Navbar = () => {
           />
         </div>
       </Link>
-      <div>SEARCH</div>
+      <div className="relative hidden md:block">
+        <form
+          className="absolute md:static top-10 -left-20 bg-white"
+          onSubmit={handleSearch}
+        >
+          <input
+            type="text"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search accounts and videos"
+            className="bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:outline-none focus:border-gray-300
+            w-[300px] md:w-[350px] rounded-full md:top-0 h-[40px]"
+          />
+          <button
+            onClick={handleSearch}
+            className="absolute md:right-5 right-6 top-2.5 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400"
+          >
+            <BiSearch />
+          </button>
+        </form>
+      </div>
       <div>
         {userProfile ? (
           <div className="flex gap-5 md:gap-10">
